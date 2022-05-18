@@ -71,6 +71,16 @@
                     </ul>
                 </li>
             </ul>
+            <!-- manage consultant -->
+            <ul class="slide-menu">
+                <li class="sub-slide">
+                    <a class="sub-side-menu__item" data-bs-toggle="sub-slide" href="<?php Request::url(); ?>"><i class="side-menu__icon fe fe-briefcase"></i><span class="sub-side-menu__label">Consultant</span><i class="sub-angle fa fa-angle-right"></i></a>
+                    <ul class="sub-slide-menu">
+                        <li><a class="sub-slide-item" href="{{ route('consultant.create') }}">Create</a></li>
+                        <li><a class="sub-slide-item" href="{{ route('consultant.list') }}">List</a></li>
+                    </ul>
+                </li>
+            </ul>
             <!-- manage Document -->
             <ul class="slide-menu">
                 <li class="sub-slide">

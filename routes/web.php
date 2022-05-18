@@ -96,4 +96,16 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/changeStatus', 'Recruitmentcontroller@changeStatus');
         Route::get('/recruitment-filter', 'Recruitmentcontroller@filterStatus');
     });
+
+    Route::prefix('consultant')->group(function () {
+        Route::get('/create', 'ConsultantController@create')->name('consultant.create');
+        Route::post('/save', 'ConsultantController@save')->name('consultant.save');
+        Route::get('/list', 'ConsultantController@list')->name('consultant.list');
+        Route::get('/view/{id}', 'ConsultantController@view')->name('consultant.view');
+        Route::get('/edit/{id}', 'ConsultantController@edit')->name('consultant.edit');
+        Route::post('/update/{id}', 'ConsultantController@update')->name('consultant.update');
+        Route::get('/delete/{id}', 'ConsultantController@delete')->name('consultant.delete');
+        Route::get('/changeStatus', 'ConsultantController@changeStatus');
+        Route::get('/recruitment-filter', 'ConsultantController@filterStatus');
+    });
 });
