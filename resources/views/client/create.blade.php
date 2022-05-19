@@ -81,4 +81,33 @@
 </div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js" defer></script>
+<script>
+    $(function() {
+        $("#client_form").validate({
+            rules: {
+                name: {
+                    required: true
+                },
+                email: {
+                    required: true,
+                    email: true,
+                },
+                phone_number: {
+                    required: true,
+                    minlength: 10,
+                    maxlength: 10,
+                    number: true
+                }
+            },
+            messages: {
+                company_name: {
+                    required: "The Name field is required."
+                }
+            }
+        });
+    });
+</script>
+
 @endsection

@@ -134,10 +134,14 @@
                     required: true
                 },
                 email: {
-                    required: true
+                    required: true,
+                    email: true,
                 },
                 phone_number: {
-                    required: true
+                    required: true,
+                    minlength: 10,
+                    maxlength: 10,
+                    number: true
                 },
                 flat_amount: {
                     required: true
