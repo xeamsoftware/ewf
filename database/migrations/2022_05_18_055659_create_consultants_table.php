@@ -60,6 +60,7 @@ class CreateConsultantsTable extends Migration
             $table->string('placement_commission')->nullable();
             $table->string('commission_amount')->nullable();
             $table->string('internal_recruiter')->nullable();
+            $table->enum('status', ['1', '0'])->default('1');
             $table->softDeletes(); // this will create deleted_at field for softdelete
             $table->timestamps();
         });
