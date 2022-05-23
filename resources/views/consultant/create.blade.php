@@ -35,7 +35,7 @@
                                         <select name="placement_type" id="placement_type" class="form-control custom-control">
                                             <option value="">Select Placement Type</option>
                                             @foreach($placemenyType as $value)
-                                            <option value="{{$value->type}}">{{$value->type}}</option>
+                                            <option value="{{$value->name}}">{{$value->name}}</option>
                                             @endforeach
                                         </select>
                                         @if ($errors->has('placement_type'))
@@ -43,195 +43,13 @@
                                         @endif
                                     </div>
                                 </div>
-                                <div class="c2c-area">
+                                <div class="document-area">
                                     <div class="row row-sm">
-                                        <div class="row row-sm">
-                                            <div class="col-lg">
-                                                <label class="form-label">Client MSA</label>
-                                                <input type="file" name="client_msa" value="{{ old('client_msa') }}" class="form-control mb-4 @error('client_msa') is-invalid @enderror">
-                                                @if ($errors->has('client_msa'))
-                                                <span class="text-danger">{{ $errors->first('client_msa') }}</span>
-                                                @endif
-                                            </div>
-                                            <div class="col-lg mg-t-10 mg-lg-t-0">
-                                                <label class="form-label">Client Purchase Order</label>
-                                                <input type="file" name="client_purchase_order" value="{{ old('client_purchase_order') }}" class="form-control mb-4 @error('client_purchase_order') is-invalid @enderror">
-                                                @if ($errors->has('client_purchase_order'))
-                                                <span class="text-danger">{{ $errors->first('client_purchase_order') }}</span>
-                                                @endif
-                                            </div>
-                                            <div class="col-lg mg-t-10 mg-lg-t-0">
-                                                <label class="form-label">Client Insurance</label>
-                                                <input type="file" name="client_insurance" value="{{ old('client_insurance') }}" class="form-control mb-4 @error('client_insurance') is-invalid @enderror">
-                                                @if ($errors->has('client_insurance'))
-                                                <span class="text-danger">{{ $errors->first('client_insurance') }}</span>
-                                                @endif
-                                            </div>
-                                        </div>
-                                        <div class="row row-sm">
-                                            <div class="col-lg">
-                                                <label class="form-label">Vendor MSA</label>
-                                                <input type="file" name="vendor_msa" value="{{ old('vendor_msa') }}" class="form-control mb-4 @error('vendor_msa') is-invalid @enderror">
-                                                @if ($errors->has('vendor_msa'))
-                                                <span class="text-danger">{{ $errors->first('vendor_msa') }}</span>
-                                                @endif
-                                            </div>
-                                            <div class="col-lg mg-t-10 mg-lg-t-0">
-                                                <label class="form-label">Vendore Purchase Order</label>
-                                                <input type="file" name="vendor_purchase_order" value="{{ old('vendor_purchase_order') }}" class="form-control mb-4 @error('vendor_purchase_order') is-invalid @enderror">
-                                                @if ($errors->has('vendor_purchase_order'))
-                                                <span class="text-danger">{{ $errors->first('vendor_purchase_order') }}</span>
-                                                @endif
-                                            </div>
-                                            <div class="col-lg mg-t-10 mg-lg-t-0">
-                                                <label class="form-label">Vendor Insurance</label>
-                                                <input type="file" name="vendor_insurance" value="{{ old('vendor_insurance') }}" class="form-control mb-4 @error('vendor_insurance') is-invalid @enderror">
-                                                @if ($errors->has('vendor_insurance'))
-                                                <span class="text-danger">{{ $errors->first('vendor_insurance') }}</span>
-                                                @endif
-                                            </div>
-                                            <div class="row row-sm">
-                                                <div class="col-lg-4">
-                                                    <label class="form-label">Vendor W9</label>
-                                                    <input type="file" name="vendor_w9" value="{{ old('vendor_w9') }}" class="form-control mb-4 @error('vendor_w9') is-invalid @enderror">
-                                                    @if ($errors->has('vendor_w9'))
-                                                    <span class="text-danger">{{ $errors->first('vendor_w9') }}</span>
-                                                    @endif
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- w2 form area -->
-                                <div class="w2-area">
+                                        <div class="row row-sm document-area1">
 
-                                    <div class="row row-sm">
-                                        <div class="row row-sm">
-                                            <div class="col-lg">
-                                                <label class="form-label">Offer Letter</label>
-                                                <input type="file" name="offer_latter_w2" value="{{ old('offer_latter_w2') }}" class="form-control mb-4 @error('offer_latter_w2') is-invalid @enderror">
-                                                @if ($errors->has('offer_latter_w2'))
-                                                <span class="text-danger">{{ $errors->first('offer_latter_w2') }}</span>
-                                                @endif
-                                            </div>
-                                            <div class="col-lg mg-t-10 mg-lg-t-0">
-                                                <label class="form-label">W4 Form</label>
-                                                <input type="file" name="w4_form_w2" value="{{ old('w4_form_w2') }}" class="form-control mb-4 @error('w4_form_w2') is-invalid @enderror">
-                                                @if ($errors->has('w4_form_w2'))
-                                                <span class="text-danger">{{ $errors->first('w4_form_w2') }}</span>
-                                                @endif
-                                            </div>
-                                            <div class="col-lg mg-t-10 mg-lg-t-0">
-                                                <label class="form-label">I9 Form</label>
-                                                <input type="file" name="i9_form_w2" value="{{ old('i9_form_w2') }}" class="form-control mb-4 @error('i9_form_w2') is-invalid @enderror">
-                                                @if ($errors->has('i9_form_w2'))
-                                                <span class="text-danger">{{ $errors->first('i9_form_w2') }}</span>
-                                                @endif
-                                            </div>
-                                        </div>
-                                        <div class="row row-sm">
-                                            <div class="col-lg">
-                                                <label class="form-label">E-Verify Authorization</label>
-                                                <input type="file" name="e_verify_authorization_w2" value="{{ old('e_verify_authorization_w2') }}" class="form-control mb-4 @error('e_verify_authorization_w2') is-invalid @enderror">
-                                                @if ($errors->has('e_verify_authorization_w2'))
-                                                <span class="text-danger">{{ $errors->first('e_verify_authorization_w2') }}</span>
-                                                @endif
-                                            </div>
-                                            <div class="col-lg mg-t-10 mg-lg-t-0">
-                                                <label class="form-label">ACH Form</label>
-                                                <input type="file" name="ach_form_w2" value="{{ old('ach_form_w2') }}" class="form-control mb-4 @error('ach_form_w2') is-invalid @enderror">
-                                                @if ($errors->has('ach_form_w2'))
-                                                <span class="text-danger">{{ $errors->first('ach_form_w2') }}</span>
-                                                @endif
-                                            </div>
-                                            <div class="col-lg mg-t-10 mg-lg-t-0">
-                                                <label class="form-label">Void Check</label>
-                                                <input type="file" name="void_check_w2" value="{{ old('void_check_w2') }}" class="form-control mb-4 @error('void_check_w2') is-invalid @enderror">
-                                                @if ($errors->has('void_check_w2'))
-                                                <span class="text-danger">{{ $errors->first('void_check_w2') }}</span>
-                                                @endif
-                                            </div>
-                                            <div class="row row-sm">
-                                                <div class="col-lg-4">
-                                                    <label class="form-label">Visa Copy</label>
-                                                    <input type="file" name="visa_copy_w2" value="{{ old('visa_copy_w2') }}" class="form-control mb-4 @error('visa_copy_w2') is-invalid @enderror">
-                                                    @if ($errors->has('visa_copy_w2'))
-                                                    <span class="text-danger">{{ $errors->first('visa_copy_w2') }}</span>
-                                                    @endif
-                                                </div>
-                                                <div class="col-lg-4">
-                                                    <label class="form-label">Id Proof</label>
-                                                    <input type="file" name="id_proof_w2" value="{{ old('id_proof_w2') }}" class="form-control mb-4 @error('id_proof_w2') is-invalid @enderror">
-                                                    @if ($errors->has('id_proof_w2'))
-                                                    <span class="text-danger">{{ $errors->first('id_proof_w2') }}</span>
-                                                    @endif
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <!-- 1099 form area -->
-                                <div class="1099-area">
-
-                                    <div class="row row-sm">
-                                        <div class="row row-sm">
-                                            <div class="col-lg">
-                                                <label class="form-label">Offer Letter</label>
-                                                <input type="file" name="offer_latter_1099" value="{{ old('offer_latter_1099') }}" class="form-control mb-4 @error('offer_latter_1099') is-invalid @enderror">
-                                                @if ($errors->has('offer_latter_1099'))
-                                                <span class="text-danger">{{ $errors->first('offer_latter_1099') }}</span>
-                                                @endif
-                                            </div>
-                                            <div class="col-lg mg-t-10 mg-lg-t-0">
-                                                <label class="form-label">W9 Form</label>
-                                                <input type="file" name="w9_form_1099" value="{{ old('w9_form_1099') }}" class="form-control mb-4 @error('w9_form_1099') is-invalid @enderror">
-                                                @if ($errors->has('w9_form_1099'))
-                                                <span class="text-danger">{{ $errors->first('w9_form_1099') }}</span>
-                                                @endif
-                                            </div>
-                                            <div class="col-lg mg-t-10 mg-lg-t-0">
-                                                <label class="form-label">I9 Form</label>
-                                                <input type="file" name="i9_form_1099" value="{{ old('i9_form_1099') }}" class="form-control mb-4 @error('i9_form_1099') is-invalid @enderror">
-                                                @if ($errors->has('i9_form_1099'))
-                                                <span class="text-danger">{{ $errors->first('i9_form_1099') }}</span>
-                                                @endif
-                                            </div>
-                                        </div>
-                                        <div class="row row-sm">
-                                            <div class="col-lg mg-t-10 mg-lg-t-0">
-                                                <label class="form-label">ACH Form</label>
-                                                <input type="file" name="ach_form_1099" value="{{ old('ach_form_1099') }}" class="form-control mb-4 @error('ach_form_1099') is-invalid @enderror">
-                                                @if ($errors->has('ach_form_1099'))
-                                                <span class="text-danger">{{ $errors->first('ach_form_1099') }}</span>
-                                                @endif
-                                            </div>
-                                            <div class="col-lg mg-t-10 mg-lg-t-0">
-                                                <label class="form-label">Void Check</label>
-                                                <input type="file" name="void_check_1099" value="{{ old('void_check_1099') }}" class="form-control mb-4 @error('void_check_1099') is-invalid @enderror">
-                                                @if ($errors->has('void_check_1099'))
-                                                <span class="text-danger">{{ $errors->first('void_check_1099') }}</span>
-                                                @endif
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <label class="form-label">Visa Copy</label>
-                                                <input type="file" name="visa_copy_1099" value="{{ old('visa_copy_1099') }}" class="form-control mb-4 @error('visa_copy_1099') is-invalid @enderror">
-                                                @if ($errors->has('visa_copy_1099'))
-                                                <span class="text-danger">{{ $errors->first('visa_copy_1099') }}</span>
-                                                @endif
-                                            </div>
-                                            <div class="row row-sm">
-                                                <div class="col-lg-4">
-                                                    <label class="form-label">Id Proof</label>
-                                                    <input type="file" name="id_proof_1099" value="{{ old('id_proof_1099') }}" class="form-control mb-4 @error('id_proof_1099') is-invalid @enderror">
-                                                    @if ($errors->has('id_proof_1099'))
-                                                    <span class="text-danger">{{ $errors->first('id_proof_1099') }}</span>
-                                                    @endif
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- end placement form area -->
                                 <div class="row row-sm">
                                     <div class="col-lg">
                                         <label class="form-label">Condidate Full Name</label>
@@ -467,75 +285,6 @@
                 placement_type: {
                     required: true
                 },
-                client_msa: {
-                    required: true
-                },
-                client_purchase_order: {
-                    required: true
-                },
-                client_insurance: {
-                    required: true
-                },
-                vendor_msa: {
-                    required: true
-                },
-                vendor_purchase_order: {
-                    required: true
-                },
-                vendor_insurance: {
-                    required: true
-                },
-                vendor_w9: {
-                    required: true
-                },
-                offer_latter_w2: {
-                    required: true
-                },
-                w4_form_w2: {
-                    required: true
-                },
-                i9_form_w2: {
-                    required: true
-                },
-                e_verify_authorization_w2: {
-                    required: true
-                },
-                ach_form_w2: {
-                    required: true
-                },
-                void_check_w2: {
-                    required: true
-                },
-                visa_copy_w2: {
-                    required: true
-                },
-                id_proof_w2: {
-                    required: true
-                },
-                offer_latter_1099: {
-                    required: true
-                },
-                w9_form_1099: {
-                    required: true
-                },
-                i9_form_1099: {
-                    required: true
-                },
-                e_verify_authorization_1099: {
-                    required: true
-                },
-                ach_form_1099: {
-                    required: true
-                },
-                void_check_1099: {
-                    required: true
-                },
-                visa_copy_1099: {
-                    required: true
-                },
-                id_proof_1099: {
-                    required: true
-                },
                 full_name: {
                     required: true
                 },
@@ -619,27 +368,24 @@
     // placement type check
 
     $(document).ready(function() {
-        $(".w2-area").hide();
-        $(".1099-area").hide();
-        $(".c2c-area").hide();
+        $(".document-area").hide();
         $('#placement_type').on('change', function() {
-            if (this.value == 'c2c') {
-                $(".w2-area").hide();
-                $(".1099-area").hide();
-                $(".c2c-area").show();
-            }
-            if (this.value == 'w2') {
-                $(".c2c-area").hide();
-                $(".1099-area").hide();
-                $(".w2-area").show();
+            let status = $(this).val();
+            // alert(status);
+            $.ajax({
+                type: "GET",
+                url: '{{ url("consultant")}}/consultant-document',
+                data: {
+                    'status': status
+                },
+                success: function(data) {
+                    // console.log(data);
+                    $('.document-area').show();
+                    $('.document-area1').show();
+                    $(".document-area1").html(data);
+                }
+            });
 
-            }
-            if (this.value == '1099') {
-                $(".c2c-area").hide();
-                $(".w2-area").hide();
-                $(".1099-area").show();
-
-            }
         });
     });
     // through company

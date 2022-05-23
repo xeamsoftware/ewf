@@ -107,5 +107,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/delete/{id}', 'ConsultantController@delete')->name('consultant.delete');
         Route::get('/changeStatus', 'ConsultantController@changeStatus');
         Route::get('/consultant-filter', 'ConsultantController@filterStatus');
+        Route::get('/consultant-document', 'ConsultantController@documentField');
     });
 });

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDocumentsTable extends Migration
+class CreateConsultantDocumentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateDocumentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('documents', function (Blueprint $table) {
+        Schema::create('consultant_documents', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
-            $table->string('type')->nullable();
-            $table->softDeletes(); // this will create deleted_at field for softdelete
+            $table->foreignId('consultant_id');
+            $table->string('documents')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateDocumentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('documents');
+        Schema::dropIfExists('consultant_documents');
     }
 }

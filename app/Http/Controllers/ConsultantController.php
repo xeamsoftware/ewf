@@ -19,10 +19,29 @@ class ConsultantController extends Controller
      */
     public function create()
     {
-        $placemenyType = Document::get();
+        $placemenyType = Document::select('name')->groupBy('name')->get();
         $company = Company::get();
         $agent = Agent::get();
         return view('consultant.create', compact('placemenyType', 'company', 'agent'));
+    }
+
+    public function documentField(Request $request)
+    {
+        $output = "";
+        $count = 0;
+        $documentField = Document::where('name', $request->status)->get();
+        if ($documentField) {
+            foreach ($documentField as $statusList) {
+                $count++;
+                $output .= '<div class="col-lg">' .
+                    '<label class="form-label">' . $statusList->type . '</label>' .
+                    '<input type="file" name="' . $statusList->type . '" value="{{ old(' . $statusList->type . ') }}" class="form-control mb-4 @error(' . $statusList->type . ') is-invalid @enderror">' .
+                    '</div>';
+            }
+        } else {
+            $output .= 'Oops somthing went wrong';
+        }
+        return $output;
     }
 
     /**
@@ -73,7 +92,7 @@ class ConsultantController extends Controller
     function edit(consultant $id)
     {
         $editConsultant = Consultant::get();
-        $placemenyType = Document::get();
+        $placemenyType = Document::select('name')->groupBy('name')->get();
         $company = Company::get();
         $agent = Agent::get();
         return view('consultant.edit', compact('id', 'editConsultant', 'placemenyType', 'company', 'agent'));
