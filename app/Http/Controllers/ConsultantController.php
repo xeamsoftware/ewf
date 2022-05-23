@@ -7,8 +7,10 @@ use App\Http\Requests\DocumentRequest;
 use App\Models\Document;
 use App\Models\Company;
 use App\Models\Consultant;
+use App\Models\PlacementypeDoc;
 use App\Models\Agent;
 use App\Services\ConsultantService;
+use App\Models\ConsultantDocument;
 
 class ConsultantController extends Controller
 {
@@ -19,7 +21,7 @@ class ConsultantController extends Controller
      */
     public function create()
     {
-        $placemenyType = Document::select('name')->groupBy('name')->get();
+        $placemenyType = PlacementypeDoc::get();
         $company = Company::get();
         $agent = Agent::get();
         return view('consultant.create', compact('placemenyType', 'company', 'agent'));
@@ -29,14 +31,17 @@ class ConsultantController extends Controller
     {
         $output = "";
         $count = 0;
-        $documentField = Document::where('name', $request->status)->get();
+        $documentField = PlacementypeDoc::with('placementType')->where('name', $request->status)->get();
+
         if ($documentField) {
-            foreach ($documentField as $statusList) {
-                $count++;
-                $output .= '<div class="col-lg">' .
-                    '<label class="form-label">' . $statusList->type . '</label>' .
-                    '<input type="file" name="' . $statusList->type . '" value="{{ old(' . $statusList->type . ') }}" class="form-control mb-4 @error(' . $statusList->type . ') is-invalid @enderror">' .
-                    '</div>';
+            foreach ($documentField as $list) {
+                foreach ($list['placementType'] as $placementtypelist) {
+                    $count++;
+                    $output .= '<div class="col-lg">' .
+                        '<label class="form-label">' . $placementtypelist->type . '</label>' .
+                        '<input type="file" name="' . $placementtypelist->type . '" value="{{ old(' . $placementtypelist->type . ') }}" class="form-control mb-4 @error(' . $placementtypelist->type . ') is-invalid @enderror">' .
+                        '</div>';
+                }
             }
         } else {
             $output .= 'Oops somthing went wrong';
@@ -89,13 +94,14 @@ class ConsultantController extends Controller
      * @param  mixed $id
      * @return void
      */
-    function edit(consultant $id)
+    function edit($id)
     {
-        $editConsultant = Consultant::get();
-        $placemenyType = Document::select('name')->groupBy('name')->get();
+        $editConsultant = Consultant::where('id', $id)->get();
+        $placemenyType = PlacementypeDoc::get();
         $company = Company::get();
         $agent = Agent::get();
-        return view('consultant.edit', compact('id', 'editConsultant', 'placemenyType', 'company', 'agent'));
+        $consultantDoc = ConsultantDocument::where('consultant_id', $id)->get();
+        return view('consultant.edit', compact('id', 'editConsultant', 'placemenyType', 'company', 'agent', 'consultantDoc'));
     }
 
     /**

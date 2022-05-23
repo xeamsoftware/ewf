@@ -47,6 +47,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/edit/{id}', 'DocumentController@edit')->name('document.edit');
         Route::post('/update/{id}', 'DocumentController@update')->name('document.update');
         Route::get('/delete/{id}', 'DocumentController@delete')->name('document.delete');
+        Route::post('/placementsave', 'DocumentController@placementSave')->name('document.placementsave');
     });
 
     Route::prefix('company')->group(function () {

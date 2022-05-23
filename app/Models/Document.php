@@ -9,5 +9,5 @@ use Illuminate\Database\Eloquent\Model;
 class Document extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $fillable = ['name','type'];
+    protected $fillable = ['placementype_id', 'type'];
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\DocumentRequest;
 use App\Models\Document;
+use App\Models\PlacementypeDoc;
 use App\Services\DocumentService;
 
 class DocumentController extends Controller
@@ -18,8 +19,30 @@ class DocumentController extends Controller
      */
     function create()
     {
-        $placemenyType = Document::select('name')->groupBy('name')->get();
+        $placemenyType = PlacementypeDoc::get();
         return view('document.create', compact('placemenyType'));
+    }
+
+    public function placementSave(Request $request)
+    {
+        $validated = request()->validate([
+            'placement_type' => 'required',
+        ]);
+        $placementSave = PlacementypeDoc::where('name', $request->placement_type)->get();
+        if ($placementSave->count()) {
+            return back()->with('unsuccess', 'Name already exist !');
+        } else {
+            $placementSave = PlacementypeDoc::create(
+                [
+                    'name' => $request->placement_type
+                ]
+            );
+            if ($placementSave) {
+                return back()->with('success', 'Successfull');
+            } else {
+                return back()->with('unsuccess', 'Opps Something wrong!');
+            }
+        }
     }
 
     /**
@@ -28,8 +51,12 @@ class DocumentController extends Controller
      * @param  mixed $request
      * @return void
      */
-    function save(DocumentRequest $request)
+    function save(Request $request)
     {
+        $validated = request()->validate([
+            'placementype_id' => 'required',
+            'field_name' => 'required',
+        ]);
         DocumentService::documentCreateUpdate($request, $id = "");
         return redirect()->back();
     }
@@ -41,7 +68,7 @@ class DocumentController extends Controller
      */
     function list()
     {
-        $document_list = Document::get();
+        $document_list = PlacementypeDoc::with('placementType')->get();
         return view('document.list', compact('document_list'));
     }
 

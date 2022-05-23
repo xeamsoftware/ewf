@@ -8,7 +8,7 @@ use App\Models\Document;
 use Illuminate\Support\Facades\DB;
 
 class DocumentService
-{    
+{
     /**
      * documentCreateUpdate
      *
@@ -16,20 +16,22 @@ class DocumentService
      * @param  mixed $id
      * @return void
      */
-    static function documentCreateUpdate($request,$id)
+    static function documentCreateUpdate($request, $id)
     {
-        $update_document = Document::updateOrCreate([
-            'id'   =>$id
-        ],
-    [
-        'name' => $request->name,
-        'type' => $request->type,        
-    ]);
+        $update_document = Document::updateOrCreate(
+            [
+                'id'   => $id
+            ],
+            [
+                'placementype_id' => $request->placementype_id,
+                'type' => $request->field_name,
+            ]
+        );
 
-    if($update_document){
-        return back()->with('success','Successfull'); 
-     } else {
-          return back()->with('unsuccess','Opps Something wrong!');
-     }
+        if ($update_document) {
+            return back()->with('success', 'Successfull');
+        } else {
+            return back()->with('unsuccess', 'Opps Something wrong!');
+        }
     }
 }

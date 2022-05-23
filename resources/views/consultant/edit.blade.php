@@ -22,27 +22,24 @@
                         <p class="alert alert-danger text-center">{{ session('unsuccess') }}</p>
                         @endif
                         <!-- End show success and unsuccess message -->
-
+                        @foreach($editConsultant as $id)
                         <form method="post" action="{{ route('consultant.update',$id->id) }}" id="myform" enctype="multipart/form-data">
                             @csrf
 
                             <div class="card-body pb-2">
                                 <!-- c2c form area -->
 
-                                <!-- <div class="row row-sm">
+                                <div class="row row-sm">
                                     <div class="col-lg-4">
                                         <label class="form-label">Placement Type</label>
                                         <select name="placement_type" id="placement_type" class="form-control custom-control">
                                             <option value="{{ $id->placement_type }}">{{ $id->placement_type }}</option>
-                                            @foreach($placemenyType as $value)
-                                            <option value="{{$value->name}}">{{$value->name}}</option>
-                                            @endforeach
                                         </select>
                                         @if ($errors->has('placement_type'))
                                         <span class="text-danger">{{ $errors->first('placement_type') }}</span>
                                         @endif
                                     </div>
-                                </div> -->
+                                </div>
 
                                 <div class="row row-sm">
                                     <div class="col-lg">
@@ -261,6 +258,7 @@
 
                             </div>
                     </div>
+                    @endforeach
                     </form>
                 </div>
 
