@@ -52,7 +52,7 @@
                                 </div>
                                 <div class="row row-sm">
                                     <div class="col-lg">
-                                        <label class="form-label">Condidate Full Name</label>
+                                        <label class="form-label">Candidate Full Name</label>
                                         <input type="text" name="full_name" value="{{ old('full_name') }}" class="form-control mb-4 @error('full_name') is-invalid @enderror">
                                         @if ($errors->has('full_name'))
                                         <span class="text-danger">{{ $errors->first('full_name') }}</span>
@@ -112,7 +112,7 @@
                                         @endif
                                     </div>
                                     <div class="col-lg mg-t-10 mg-lg-t-0">
-                                        <label class="form-label">Condidate Rate</label>
+                                        <label class="form-label">Candidate Rate</label>
                                         <input type="text" name="condidate_rate" value="{{ old('condidate_rate') }}" class="form-control mb-4 @error('condidate_rate') is-invalid @enderror">
                                         @if ($errors->has('condidate_rate'))
                                         <span class="text-danger">{{ $errors->first('condidate_rate') }}</span>
