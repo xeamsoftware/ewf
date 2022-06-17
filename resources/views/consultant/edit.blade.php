@@ -74,7 +74,7 @@
                                     </div>
                                     <div class="col-lg mg-t-10 mg-lg-t-0">
                                         <label class="form-label">Contact Number</label>
-                                        <input type="text" name="conatct_number" value="{{ $id->contact_number }}" class=" form-control mb-4 @error('conatct_number') is-invalid @enderror">
+                                        <input type="text" name="conatct_number" value="{{ $id->contact_number }}" class="phone-format form-control mb-4 @error('conatct_number') is-invalid @enderror">
                                         @if ($errors->has('conatct_number'))
                                         <span class="text-danger">{{ $errors->first('conatct_number') }}</span>
                                         @endif
@@ -350,6 +350,27 @@
                 company_name: {
                     required: "The Name field is required."
                 }
+            }
+        });
+    });
+
+    $(document).ready(function() {
+        /***phone number format***/
+        $(".phone-format").keypress(function(e) {
+            if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                return false;
+            }
+            var curchr = this.value.length;
+            var curval = $(this).val();
+            if (curchr == 3 && curval.indexOf("(") <= -1) {
+                $(this).val("+1-" + curval + "" + "-");
+            } else if (curchr == 4 && curval.indexOf("(") > -1) {
+                $(this).val(curval + ")-");
+            } else if (curchr == 5 && curval.indexOf(")") > -1) {
+                $(this).val(curval + "-");
+            } else if (curchr == 10) {
+                $(this).val(curval + "-");
+                $(this).attr('maxlength', '15');
             }
         });
     });

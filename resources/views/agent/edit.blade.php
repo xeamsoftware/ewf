@@ -74,7 +74,7 @@
                                         </div>
                                         <div class="col-lg mg-t-10 mg-lg-t-0">
                                             <label class="form-label">Phone Number</label>
-                                            <input type="text" name="phone_number" value="{{ $id->phone_number }}" class="form-control mb-4 @error('phone_number') is-invalid @enderror" placeholder="Enter Phone Number">
+                                            <input type="text" name="phone_number" value="{{ $id->phone_number }}" class="phone-format form-control mb-4 @error('phone_number') is-invalid @enderror" placeholder="Enter Phone Number">
                                             @if ($errors->has('phone_number'))
                                             <span class="text-danger">{{ $errors->first('phone_number') }}</span>
                                             @endif
@@ -148,6 +148,27 @@
             } else {
                 $('.percentage').show();
                 $('.flat').hide();
+            }
+        });
+    });
+
+    $(document).ready(function() {
+        /***phone number format***/
+        $(".phone-format").keypress(function(e) {
+            if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                return false;
+            }
+            var curchr = this.value.length;
+            var curval = $(this).val();
+            if (curchr == 3 && curval.indexOf("(") <= -1) {
+                $(this).val("+1-" + curval + "" + "-");
+            } else if (curchr == 4 && curval.indexOf("(") > -1) {
+                $(this).val(curval + ")-");
+            } else if (curchr == 5 && curval.indexOf(")") > -1) {
+                $(this).val(curval + "-");
+            } else if (curchr == 10) {
+                $(this).val(curval + "-");
+                $(this).attr('maxlength', '15');
             }
         });
     });

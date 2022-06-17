@@ -79,7 +79,7 @@
                                     <div class="row row-sm">
                                         <div class="col-lg">
                                             <label class="form-label">Phone No</label>
-                                            <input type="text" name="phone" value="{{ old('phone') }}" class="form-control mb-4 @error('phone') is-invalid @enderror" placeholder="Enter Federal Tax">
+                                            <input type="text" name="phone" value="{{ old('phone') }}" class="phone-format form-control mb-4 @error('phone') is-invalid @enderror" placeholder="Enter Federal Tax">
                                             @if ($errors->has('phone'))
                                             <span class="text-danger">{{ $errors->first('phone') }}</span>
                                             @endif
@@ -116,7 +116,7 @@
                                         </div>
                                         <div class="col-lg mg-t-10 mg-lg-t-0">
                                             <label class="form-label">Accounts Phone No</label>
-                                            <input type="text" name="account_phone" value="{{ old('account_phone') }}" class="form-control mb-4 @error('account_phone') is-invalid @enderror" placeholder="Enter Account Phone No">
+                                            <input type="text" name="account_phone" value="{{ old('account_phone') }}" class="phone-format form-control mb-4 @error('account_phone') is-invalid @enderror" placeholder="Enter Account Phone No">
                                             @if ($errors->has('account_phone'))
                                             <span class="text-danger">{{ $errors->first('account_phone') }}</span>
                                             @endif
@@ -139,7 +139,7 @@
                                         </div>
                                         <div class="col-lg mg-t-10 mg-lg-t-0">
                                             <label class="form-label">Sales Phone No</label>
-                                            <input type="text" name="sales_phone" value="{{ old('sales_phone') }}" class="form-control mb-4 @error('sales_phone') is-invalid @enderror" placeholder="Enter Sales Phone No">
+                                            <input type="text" name="sales_phone" value="{{ old('sales_phone') }}" class="phone-format form-control mb-4 @error('sales_phone') is-invalid @enderror" placeholder="Enter Sales Phone No">
                                             @if ($errors->has('sales_phone'))
                                             <span class="text-danger">{{ $errors->first('sales_phone') }}</span>
                                             @endif
@@ -194,9 +194,8 @@
                 },
                 phone: {
                     required: true,
-                    minlength: 10,
-                    maxlength: 10,
-                    number: true
+                    minlength: 15,
+                    maxlength: 15
                 },
                 fax_no: {
                     required: true
@@ -214,9 +213,8 @@
                 },
                 account_phone: {
                     required: true,
-                    minlength: 10,
-                    maxlength: 10,
-                    number: true
+                    minlength: 15,
+                    maxlength: 15
                 },
                 sales_name: {
                     required: true
@@ -227,15 +225,35 @@
                 },
                 sales_phone: {
                     required: true,
-                    minlength: 10,
-                    maxlength: 10,
-                    number: true
+                    minlength: 15,
+                    maxlength: 15
                 }
             },
             messages: {
                 company_name: {
                     required: "The Name field is required."
                 }
+            }
+        });
+    });
+
+    $(document).ready(function() {
+        /***phone number format***/
+        $(".phone-format").keypress(function(e) {
+            if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                return false;
+            }
+            var curchr = this.value.length;
+            var curval = $(this).val();
+            if (curchr == 3 && curval.indexOf("(") <= -1) {
+                $(this).val("+1-" + curval + "" + "-");
+            } else if (curchr == 4 && curval.indexOf("(") > -1) {
+                $(this).val(curval + ")-");
+            } else if (curchr == 5 && curval.indexOf(")") > -1) {
+                $(this).val(curval + "-");
+            } else if (curchr == 10) {
+                $(this).val(curval + "-");
+                $(this).attr('maxlength', '15');
             }
         });
     });

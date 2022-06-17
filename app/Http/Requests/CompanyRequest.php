@@ -30,15 +30,12 @@ class CompanyRequest extends FormRequest
             'federal_tax' => 'required',
             'authority_name' => 'required',
             'disignation' => 'required',
-            'phone' => 'required|digits:10',
             'fax_no' => 'required',
             'company_email' => 'required|email',
             'account_name' => 'required',
             'account_email' => 'required|email',
-            'account_phone' => 'required|digits:10',
             'sales_name' => 'required',
             'sales_email' => 'required|email',
-            'sales_phone' => 'required|digits:10',
         ];
     }
 }
